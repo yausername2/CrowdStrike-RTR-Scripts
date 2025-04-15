@@ -15,7 +15,7 @@ These scripts help with common tasks during threat hunting, incident response, a
 | Script Name         | Description                                                                 | Platform       |
 |---------------------|-----------------------------------------------------------------------------|----------------|
 | `get_psTree.ps1`    | Generates a detailed hierarchical process tree, aiding in visualizing parent-child relationships of processes during workflows triggered by endpoint detections. | Windows        |
-
+| `run_autoruns.ps1`  | Runs [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns) to analyze autorun entries and collects system information.  | Windows        |
 
 ## 🧠 Use Cases
 
