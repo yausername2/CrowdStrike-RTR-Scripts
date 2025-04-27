@@ -18,6 +18,7 @@ These scripts help with common tasks during threat hunting, incident response, a
 | `run_autoruns.ps1`  | Runs [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns) to analyze autorun entries and collects system information.  | Windows        |
 | `run_thorlite.ps1`  | Executes [Thor Lite](https://www.nextron-systems.com/thor-lite/) scan and collects system information for analysis.       | Windows        |
 | `msgbox.ps1`        | Designed to run in RTR session to notify users of a security incident with a message box on the target system   | Windows        |
+| `uninstall_CsRemote.ps1`  | Designed to run in RTR session to uninstalls the CrowdStrike Falcon agent without exposing the maintenance token to the user.   | Windows        |
 
 ## 🧠 Use Cases
 
