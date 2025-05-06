@@ -20,7 +20,7 @@ The script performs the following steps:
 runscript -CloudFile="uninstall_CsRemote" -CommandLine="MAINTENANCE_TOKEN_HERE"
 
 .LINK
-https://github.com/yausername2/CrowdStrike-RTR-Scripts/blob/main/uninstall_CsRemote.ps1
+https://github.com/yausername2/CrowdStrike-RTR-Scripts/blob/main/Scripts/uninstall_CsRemote.ps1
 
 #>
 

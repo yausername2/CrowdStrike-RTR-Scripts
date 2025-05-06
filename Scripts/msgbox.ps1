@@ -20,7 +20,7 @@ The message will be displayed 50 times to ensure visibility.
 - The message is hardcoded and should be modified to suit the specific incident or alert being communicated.
 
 .LINK
-https://github.com/yausername2/CrowdStrike-RTR-Scripts/blob/main/msgbox.ps1
+https://github.com/yausername2/CrowdStrike-RTR-Scripts/blob/main/Scripts/msgbox.ps1
 
 #>
 
