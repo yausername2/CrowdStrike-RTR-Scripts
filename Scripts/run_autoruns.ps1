@@ -1,3 +1,18 @@
+<#
+.SYNOPSIS
+This script is designed to run in CrowdStrike RTR (Real Time Response) or another EDR (Endpoint Detection and Response) RTR module to collect system information and perform an 'Autoruns' scan for analysis.
+
+.DESCRIPTION
+The script automates the collection of various system artifacts, including process information, service details, installed software, scheduled tasks, and performs a scan with 'Autoruns' utility. It ensures that necessary directories and files are created, extracts necessary tools and executes commands to collect data for further analysis.
+
+.NOTES
+Ensure that the Sysinternals Suite and 7-Zip executable (if needed) are available in the specified locations before running the script.
+
+.LINK
+https://github.com/yausername2/CrowdStrike-RTR-Scripts/blob/main/Scripts/run_autoruns.ps1
+
+#>
+
 if (Test-Path -Path "$Env:PUBLIC\$Env:COMPUTERNAME")
 {
     echo "Directory already exists. Proceeding..."
@@ -12,6 +27,7 @@ if ( -not (Test-Path -Path "$Env:PUBLIC\$Env:COMPUTERNAME\#ToDoList_$Env:COMPUTE
     echo "Creating a To-Do list file..."
     echo "#write here the things to do#" > $Env:PUBLIC\$Env:COMPUTERNAME\#ToDoList_$Env:COMPUTERNAME.txt
 }
+# Please refer to https://learn.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite for the Sysinternals Suite
 if (Test-Path -Path "$Env:PUBLIC\SysinternalsSuite.zip")
 {
 	if($PSVersionTable.PSVersion.Major -lt 5)

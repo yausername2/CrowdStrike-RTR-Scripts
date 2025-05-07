@@ -1,3 +1,15 @@
+<#
+.SYNOPSIS
+This script is designed to run in an automated, detection-triggered Endpoint Detection and Response (EDR) workflow to get a snapshot of the processes that are running.
+
+.DESCRIPTION
+The script generates a detailed hierarchical process tree that helps visualize the parent-child relationships of processes during workflows triggered by endpoint detections.
+
+.LINK
+https://github.com/yausername2/CrowdStrike-RTR-Scripts/blob/main/Scripts/get_psTree.ps1
+
+#>
+
 function Get-PsTree {
     param(
         [switch]$OwnerInfo

@@ -1,3 +1,19 @@
+<#
+.SYNOPSIS
+This script is designed to run in CrowdStrike RTR (Real Time Response) or another EDR (Endpoint Detection and Response) RTR module to collect browsing history, save it to a CSV file, encrypt it with a password, and clean up temporary files.
+
+.DESCRIPTION
+This script automates the process of extracting browsing history using 'BrowsingHistoryView', saving the data in CSV format, compressing the CSV file into a password-protected ZIP archive, and cleaning up temporary files. It ensures required directories and tools are available, handles errors gracefully, and removes sensitive data after processing.
+
+.NOTES
+- Replace 'YOUR_PASSWORD' in the compression arguments with a strong password of your choice. The password is used in the 7-Zip compression step to secure the ZIP file containing the browsing history.
+- Ensure that the BrowsingHistoryView archive and 7-Zip executable are available in the specified locations before running the script.
+
+.LINK
+https://github.com/yausername2/CrowdStrike-RTR-Scripts/blob/main/Scripts/run_browsingHistoryView.ps1
+
+#>
+
 if (Test-Path -Path "$Env:PUBLIC\$Env:COMPUTERNAME")
 {
     echo "Directory already exists. Proceeding..."
@@ -7,6 +23,7 @@ else
     echo "Creating directory..."
 	New-Item -Path $Env:PUBLIC\$Env:COMPUTERNAME -ItemType Directory
 }
+# Please refer to https://www.nirsoft.net/utils/browsing_history_view.html for the BrowsingHistoryView
 if (Test-Path -Path "$Env:PUBLIC\browsinghistoryview-x64.zip")
 {
     # Please refer to https://github.com/yausername2/CrowdStrike-RTR-Scripts/blob/main/Resources/7za.exe for the standalone 7-Zip executable (7za.exe Version 24.09 x64)

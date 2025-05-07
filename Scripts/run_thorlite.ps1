@@ -1,3 +1,18 @@
+<#
+.SYNOPSIS
+This script is designed to run in CrowdStrike RTR (Real Time Response) or another EDR (Endpoint Detection and Response) RTR module to collect system information and perform a 'Thor Lite' scan for analysis.
+
+.DESCRIPTION
+The script automates the collection of various system artifacts, including process information, service details, installed software, scheduled tasks, and performs a scan with 'Thor Lite' utility. It ensures that necessary directories and files are created, extracts necessary tools and executes commands to collect data for further analysis.
+
+.NOTES
+Ensure that the Thor Lite archive and 7-Zip executable (if needed) are available in the specified locations before running the script.
+
+.LINK
+https://github.com/yausername2/CrowdStrike-RTR-Scripts/blob/main/Scripts/run_thorlite.ps1
+
+#>
+
 if (Test-Path -Path "$Env:PUBLIC\$Env:COMPUTERNAME")
 {
     echo "Directory already exists. Proceeding..."
@@ -12,6 +27,7 @@ if ( -not (Test-Path -Path "$Env:PUBLIC\$Env:COMPUTERNAME\#ToDoList_$Env:COMPUTE
     echo "Creating a To-Do list file..."
     echo "#write here the things to do#" > $Env:PUBLIC\$Env:COMPUTERNAME\#ToDoList_$Env:COMPUTERNAME.txt
 }
+# Please refer to https://www.nextron-systems.com/thor-lite/ for the Thor Lite
 if (Test-Path -Path "$Env:PUBLIC\thor-lite-win.zip")
 {
     if($PSVersionTable.PSVersion.Major -lt 5)
