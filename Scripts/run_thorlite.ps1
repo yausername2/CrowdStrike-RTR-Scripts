@@ -18,53 +18,37 @@ if (Test-Path -Path "$Env:PUBLIC\thor-lite-win.zip")
     {
         echo "PowerShell version is outdated..."
         echo "Attempting to proceed..."
-        if (Test-Path -Path "$Env:PUBLIC\7Zip.zip")
-        {
-            $shell=new-object -com shell.application
-            $targetpath=$Env:PUBLIC
-            $location=$shell.namespace($targetpath)
-            $zipFiles = get-childitem $Env:PUBLIC\7Zip.zip
-
-            foreach($zipFile in $ZipFiles)
+		# Please refer to https://github.com/yausername2/CrowdStrike-RTR-Scripts/blob/main/Resources/7za.exe for the standalone 7-Zip executable (7za.exe Version 24.09 x64)
+		# or unpack it from the `extra` package provide by 7-Zip mantainers: https://github.com/ip7z/7zip/releases/download/24.09/7z2409-extra.7z
+		if (Test-Path -Path "$Env:PUBLIC\7za.exe")
+		{
+            if (Get-Process -Name 7za -ErrorAction SilentlyContinue)
             {
-                $zipFolder = $shell.namespace($zipFile.fullname)
-                $location.Copyhere($zipFolder.items(), 0x14)
+                Get-Process -Name 7za | kill
             }
-            if ((Test-Path -Path "$Env:PUBLIC\7z.exe") -and (Test-Path -Path "$Env:PUBLIC\7z.dll"))
+            
+            Try 
             {
-                if (Get-Process -Name 7z -ErrorAction SilentlyContinue)
-                {
-                    Get-Process -Name 7z | kill
-                }
-                
-                Try 
-                {
-                    echo "Starting 7-Zip to extract files..."
-                    $pinfo = New-Object System.Diagnostics.ProcessStartInfo
-                    $pinfo.FileName = "$Env:PUBLIC\7z.exe"
-                    $pinfo.WorkingDirectory = "$Env:PUBLIC\thor-lite-win"
-                    $pinfo.Arguments = "x $ENV:PUBLIC\thor-lite-win.zip -aos -o$Env:PUBLIC\thor-lite-win"
-                    $p = New-Object System.Diagnostics.Process
-                    $p.StartInfo = $pinfo
-                    $p.Start() | Out-Null
-                    $p.WaitForExit()
-                    echo "Extraction completed successfully."
-                }
-                Catch
-                {
-                    echo "An error occurred during extraction. Exiting..."
-                    exit
-                }
+                echo "Starting 7-Zip to extract files..."
+                $pinfo = New-Object System.Diagnostics.ProcessStartInfo
+                $pinfo.FileName = "$Env:PUBLIC\7za.exe"
+                $pinfo.WorkingDirectory = "$Env:PUBLIC\thor-lite-win"
+                $pinfo.Arguments = "x $ENV:PUBLIC\thor-lite-win.zip -aos -o$Env:PUBLIC\thor-lite-win"
+                $p = New-Object System.Diagnostics.Process
+                $p.StartInfo = $pinfo
+                $p.Start() | Out-Null
+                $p.WaitForExit()
+                echo "Extraction completed successfully."
             }
-            else
+            Catch
             {
-                echo "Required 7-Zip files are missing. Exiting..."
+                echo "An error occurred during extraction. Exiting..."
                 exit
             }
         }
         else
         {
-            echo "7-Zip archive not found. Exiting..."
+            echo "7-Zip executable not found. Exiting..."
             exit
         }
     }
