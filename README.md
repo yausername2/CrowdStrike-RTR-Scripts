@@ -31,6 +31,21 @@ These scripts help with common tasks during threat hunting, incident response, a
 
 These scripts are based on real-world scenarios encountered during SOC operations and malware triage.
 
+## ⚖️ License
+
+This repository is licensed under the [MIT License](https://opensource.org/licenses/MIT). See the [LICENSE](LICENSE) file for more details.
+
+### Third-Party Software Notice
+
+This repository includes a binary file: `Resources/7za.exe`
+
+`7za.exe` is part of the 7-Zip project, created by Igor Pavlov, and is **licensed under the "GNU LGPL"**.
+
+- Official site: [https://www.7-zip.org](https://www.7-zip.org)
+- License text: See `/Resources/7za-License.txt`
+
+This binary is provided for convenience only. If you prefer, you can replace it with your own copy from the official source.
+
 ---
 
 
