@@ -20,6 +20,7 @@ These scripts help with common tasks during threat hunting, incident response, a
 | `msgbox.ps1`        | Designed to run in RTR session to notify users of a security incident with a message box on the target system   | Windows        |
 | `uninstall_CsRemote.ps1`  | Designed to run in RTR session to uninstalls the CrowdStrike Falcon agent without exposing the maintenance token to the user.   | Windows        |
 | `run_browsingHistoryView.ps1`  | Executes [BrowsingHistoryView](https://www.nirsoft.net/utils/browsing_history_view.html) that reads the history data of different Web browsers and save an encrypted copy.   | Windows        |
+| `collect_IRData.ps1`  | Collect system information, network details, running processes, services, scheduled tasks, installed software, and other relevant data for incident response purposes.   | Windows        |
 
 ## 🧰 Resources
 
