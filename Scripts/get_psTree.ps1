@@ -12,7 +12,8 @@ https://github.com/yausername2/CrowdStrike-RTR-Scripts/blob/main/Scripts/get_psT
 
 function Get-PsTree {
     param(
-        [switch]$OwnerInfo
+        [switch]$OwnerInfo,
+        [int]$MaxDepth = 100  # Add a parameter for max recursion depth
     )
 
     Set-Variable -Name doneProc -Option AllScope
@@ -60,6 +61,12 @@ function Get-PsTree {
             $currentProc,
             $currentLevel
         )
+
+        # Prevent infinite or too deep recursion
+        if ($currentLevel -gt $MaxDepth) {
+            $outVar += ("`t" * ($currentLevel + 1)) + "[WARNING: Max recursion depth reached]"
+            return
+        }
 
         if ($currentProc.ProcessId -notin $doneProc) {
             $ProcessId = $currentProc.ProcessId
