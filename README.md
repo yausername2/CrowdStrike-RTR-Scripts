@@ -17,6 +17,7 @@ These scripts help with common tasks during threat hunting, incident response, a
 | `get_psTree.ps1`    | Generates a detailed hierarchical process tree, aiding in visualizing parent-child relationships of processes during workflows triggered by endpoint detections. | Windows        |
 | `run_autoruns.ps1`  | Executes [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns), a Sysinternals tool, to identify malicious or unnecessary startup programs and services.  | Windows        |
 | `run_thorlite.ps1`  | Executes [Thor Lite](https://www.nextron-systems.com/thor-lite/), a free IOC and YARA rule scanner, to detect malicious artifacts and anomalies on the system.       | Windows        |
+| `run_thorlite.sh`  | Executes [Thor Lite](https://www.nextron-systems.com/thor-lite/), a free IOC and YARA rule scanner, to detect malicious artifacts and anomalies on the system.       | MacOS        |
 | `msgbox.ps1`        | Designed to run in RTR session to notify users of a security incident with a message box on the target system   | Windows        |
 | `uninstall_CsRemote.ps1`  | Designed to run in RTR session to uninstalls the CrowdStrike Falcon agent without exposing the maintenance token to the user.   | Windows        |
 | `run_browsingHistoryView.ps1`  | Executes [BrowsingHistoryView](https://www.nirsoft.net/utils/browsing_history_view.html) that reads the history data of different Web browsers and save an encrypted copy.   | Windows        |
