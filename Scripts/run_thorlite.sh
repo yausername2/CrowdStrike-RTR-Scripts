@@ -3,6 +3,7 @@ set -euo pipefail
 
 cd /usr/local || { echo "Failed to cd to /usr/local"; exit 1; }
 
+# Please refer to https://www.nextron-systems.com/thor-lite/ for the Thor Lite binary.
 if [[ ! -f thor-lite-osx.zip ]]; then
   echo "thor-lite-osx.zip not found!"
   exit 1
