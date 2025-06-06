@@ -24,6 +24,7 @@ These scripts help with common tasks during threat hunting, incident response, a
 | `collect_IRData.ps1`  | Collect system information, network details, running processes, services, scheduled tasks, installed software, and other relevant data for incident response purposes.   | Windows        |
 | `run_kape.ps1`  | Executes [Kape](https://www.kroll.com/en/insights/publications/cyber/kroll-artifact-parser-extractor-kape) that find forensically useful artifacts, and parse them within a few minutes.   | Windows        |
 | `flush_tools.ps1`  | Remove tools, files and folders deployed during the incident response activities.   | Windows        |
+| `run_persistenceSniper.ps1`  | Executes [PersistenceSniper](https://github.com/last-byte/PersistenceSniper), a Powershell module that can be used to hunt persistences implanted in Windows machines.  | Windows        |
 
 ## 🧰 Resources
 
